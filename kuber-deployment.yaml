@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-bank-service
+spec:
+  selector:
+    matchLabels:
+      app: springboot-bank-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: springboot-bank-service
+    spec:
+      containers:
+        - name: springboot-bank-service
+          image: springboot-bank-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5050

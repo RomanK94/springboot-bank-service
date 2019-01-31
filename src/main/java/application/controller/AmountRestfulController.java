@@ -1,6 +1,7 @@
 package application.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -15,10 +16,10 @@ public class AmountRestfulController {
     this.restTemplate = restTemplate;
   }
 
-  @RequestMapping("/rest/amount")
-  public String getRestAmount() {
+  @RequestMapping("/rest/amount/{id}")
+  public String getRestAmount(@PathVariable long id) {
 
-    ResponseEntity<String> response = restTemplate.getForEntity(AMOUNT_RESOURCE_URL, String.class);
+    ResponseEntity<String> response = restTemplate.getForEntity(AMOUNT_RESOURCE_URL + id, String.class);
 
     return response.getBody();
   }
