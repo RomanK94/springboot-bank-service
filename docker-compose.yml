@@ -1,0 +1,16 @@
+version: '2'
+services:
+  bank-service-app:
+    image: springboot-bank-service
+    ports:
+    - "8080:8080"
+    depends_on:
+    - bank-service-postgres
+  bank-service-postgres:
+    image: postgres:10.1
+    ports:
+     - "5431:5432"
+    environment:
+     - POSTGRES_PASSWORD=postgres
+     - POSTGRES_USER=postgres
+     - POSTGRES_DB=bank-service-db
